@@ -25,7 +25,9 @@ class ResponseObject implements \JsonSerializable
 
     protected function parseValue($value, ?string $property = null)
     {
-        if (is_object($value)) {
+        if ($value === null) {
+            return $value;
+        } elseif (is_object($value)) {
             return new self($value);
         } elseif (is_array($value)) {
             $result = [];
